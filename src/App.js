@@ -1,36 +1,41 @@
 import PropTypes from "prop-types";
-import './App.css';
-import Shapes from './components/shapes/shapes'
-import Logos from './components/logos/logos'
-import {ReactComponent as MakeLogo} from './logo.svg'
-import {ReactComponent as ReactLogo} from './react-logo.svg'
+import "./App.css";
 
-function App({ headline, showLogos, backgroundImage }) {
+function App({ font, colour, text, letterSpacing }) {
+  let fontSize = "60vh";
+  let lineHeight = "100vh";
+  if (text.length < 5) {
+    fontSize = "80vh";
+  } else if (text.length > 12) {
+    fontSize = "40vh";
+    lineHeight = "50vh";
+  }
   return (
-    <div className="App" style={{ backgroundImage: `url('${backgroundImage}')` }}>
-      {showLogos && (
-        <Logos logoOne={<MakeLogo />} logoTwo={<ReactLogo />} />
-      )}
-
-      <h1>{headline}</h1>
-
-      <div className="shape-container">
-        <Shapes />
-      </div>
+    <div className="App">
+      <p
+        style={{
+          fontFamily: font,
+          color: colour,
+          fontSize,
+          lineHeight,
+        }}
+      >
+        {text}
+      </p>
     </div>
   );
 }
 
 App.propTypes = {
-  headline: PropTypes.string,
-  showLogos: PropTypes.string,
-  backgroundImage: PropTypes.string,
-}
+  font: PropTypes.string,
+  colour: PropTypes.string,
+  text: PropTypes.string,
+};
 
 App.defaultProps = {
-  headline: 'Hello World',
-  showLogos: true,
-  backgroundImage: '',
-}
+  font: "Merriweather",
+  colour: "#ff6969",
+  text: "Community",
+};
 
 export default App;
