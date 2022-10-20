@@ -7,7 +7,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      fontSize: 80,
+      fontSize: window.outerHeight,
       lineHeight: window.outerHeight,
       height: window.outerHeight,
       width: window.outerWidth,
